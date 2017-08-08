@@ -1,0 +1,6 @@
+*.idea/
+*.iml
+react.d.ts
+/node_modules/
+npm-debug.log
+/dist

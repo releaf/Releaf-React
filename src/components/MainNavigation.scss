@@ -1,0 +1,48 @@
+@import '../../sass/vars.scss';
+
+#mainNav {
+  border: none;
+  border-bottom: none;
+  padding: 10px 0;
+  min-height: 68px;
+  &.navbar {
+    transition: all 0.5s ease;
+    opacity: 1;
+  }
+  &.invisible {
+    opacity: 0;
+  }
+  .navbar-brand {
+    font-size: 24px;
+    text-decoration: none;
+    opacity: 1;
+    color: $white;
+    margin-left: 16px;
+    transition: all .5s;
+    font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
+    font-weight: 900;
+    text-transform: uppercase;
+    img {
+      height: 40px;
+    }
+  }
+  .navbar-collapse .navbar-nav > .nav-item > .nav-link {
+    padding: 15px;
+    color: $white;
+    &:hover {
+      color: $white_50;
+    }
+    &:focus {
+      color: $white_50;
+    }
+    &.active {
+      color: $brand-primary;
+      &:hover {
+        color: $brand-primary;
+      }
+      &:focus {
+        color: $brand-primary;
+      }
+    }
+  }
+}
