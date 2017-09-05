@@ -10,19 +10,6 @@ export default class NavigationOverlay extends Component {
 		};
 	}
 
-	// componentDidUpdate() {
-	// 	const { showMenu } = this.props.navigation;
-	// 	console.log('showMenu ', showMenu);
-	// 	if (showMenu) {
-	// 		console.log('on');
-	// 		disableScroll.on();
-	// 	} else {
-	// 		console.log('off');
-	// 		disableScroll.off();
-	// 	}
-	// }
-
-
 	render() {
 		const { items } = this.props.navigation;
 		const links = items ? items.map((navigationItem) => (
@@ -35,6 +22,7 @@ export default class NavigationOverlay extends Component {
 					activeClassName="active"
 					onlyActiveOnIndex={navigationItem.title !== 'Home'}
 					key={navigationItem.title}
+					onClick={this.props.onClick.bind(this)}
 				>
 					{navigationItem.title}
 				</Link>
@@ -43,11 +31,14 @@ export default class NavigationOverlay extends Component {
 		const wrapperClasses = [
 			'nav-items', 'list-unstyled', 'd-flex', 'flex-column', 'justify-content-center align-items-center'
 		];
+		const content = links ? (
+			<ul className={wrapperClasses.join(' ')}>
+				{links}
+			</ul>
+		) : <h2 className="d-flex justify-content-center text-white">Loading Navigation...</h2>;
 		return (
 			<div className="navigation-overlay">
-				<ul className={wrapperClasses.join(' ')}>
-					{links}
-				</ul>
+				{content}
 			</div>
 		);
 	}
@@ -55,4 +46,5 @@ export default class NavigationOverlay extends Component {
 
 NavigationOverlay.propTypes = {
 	navigation: React.PropTypes.object,
+	onClick: React.PropTypes.func,
 };

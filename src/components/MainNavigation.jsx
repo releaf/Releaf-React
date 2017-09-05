@@ -42,7 +42,7 @@ export default class MainNavigation extends Component {
 			const scrollTop = event.srcElement.body.scrollTop;
 			const currentClasses = this.state.navClasses;
 			const hero = document.getElementsByClassName('hero')[0];
-			if (hero) {
+			if (hero && !this.props.navigation.showMenu) {
 				const windowHeight = document.getElementsByClassName('hero')[0].clientHeight;
 				if (scrollTop > (windowHeight - 200)) {
 					currentClasses.delete('invisible');
@@ -59,7 +59,10 @@ export default class MainNavigation extends Component {
 
 	render() {
 		const navigationOverlay = this.props.navigation.showMenu
-			? <NavigationOverlay navigation={this.props.navigation} />
+			? (<NavigationOverlay
+				navigation={this.props.navigation}
+				onClick={this.onClick.bind(this)}
+			/>)
 			: null
 		;
 

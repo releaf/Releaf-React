@@ -4,7 +4,7 @@ import MainNavigation from '../components/MainNavigation';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import { getNavigation, onMenuClick } from '../actions/navigation';
-import disableScroll from '../helpers/disableScroll';
+// import disableScroll from '../helpers/disableScroll';
 
 class Index extends Component {
 	render() {
@@ -54,11 +54,11 @@ const mapDispatchToProps = (dispatch) => (
 			if (!navigation.items) {
 				dispatch(getNavigation());
 			}
-			if (!navigation.showMenu) {
-				disableScroll.on();
-			} else {
-				disableScroll.off();
-			}
+			// if (!navigation.showMenu) {
+			// 	disableScroll.on();
+			// } else {
+			// 	disableScroll.off();
+			// }
 			dispatch(onMenuClick());
 		}
 	}

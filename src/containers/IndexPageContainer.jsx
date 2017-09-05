@@ -20,7 +20,13 @@ class IndexPageContainer extends Component {
 
 	render() {
 		const { page } = this.props;
-		let content = <h1>LOADING...</h1>;
+		let content = (
+			<h1
+				className="d-flex justify-content-center align-content-center"
+			>
+				LOADING...
+			</h1>
+		);
 
 		if (page) {
 			content = <HomePage page={page} />;
