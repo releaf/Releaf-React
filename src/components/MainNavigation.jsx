@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { Navbar } from 'react-bootstrap';
 import NavigationOverlay from '../components/NavigationOverlay';
 
 import './MainNavigation.scss';
@@ -31,43 +29,55 @@ export default class MainNavigation extends Component {
 		}
 	}
 
+	onClick() {
+		const burgerClasses = this.state.burgerClasses === 'open' ? '' : 'open';
+		this.setState({
+			burgerClasses
+		});
+		this.props.onMenuClick(this.props.navigation);
+	}
+
 	handleScroll(event) {
 		if (this.props.routeProps.name === 'home' && this.props.navigation.scrolling.enabled) {
 			const scrollTop = event.srcElement.body.scrollTop;
 			const currentClasses = this.state.navClasses;
-			const windowHeight = document.getElementsByClassName('hero')[0].clientHeight;
+			const hero = document.getElementsByClassName('hero')[0];
+			if (hero) {
+				const windowHeight = document.getElementsByClassName('hero')[0].clientHeight;
+				if (scrollTop > (windowHeight - 200)) {
+					currentClasses.delete('invisible');
+				} else {
+					currentClasses.add('invisible');
+				}
 
-			if (scrollTop > (windowHeight - 200)) {
-				currentClasses.delete('invisible');
-			} else {
-				currentClasses.add('invisible');
+				this.setState({
+					navClasses: currentClasses
+				});
 			}
-
-			this.setState({
-				navClasses: currentClasses
-			});
 		}
 	}
 
 	render() {
+		const navigationOverlay = this.props.navigation.showMenu
+			? <NavigationOverlay navigation={this.props.navigation} />
+			: null
+		;
+
 		return (
 			<header id="mainNav" className={[...this.state.navClasses].join(' ')}>
-				<nav className="container">
-					<nav className="nav blog-nav">
-						<Link to="/" className="nav-link" activeClassName="active" onlyActiveOnIndex>Home</Link>
-						<Link to="/projects" className="nav-link" activeClassName="active">Projects</Link>
-					</nav>
-				</nav>
-
-				<Navbar inverse collapseOnSelect>
-					<Navbar.Header>
-						<Navbar.Brand>
-							<a href="#">React-Bootstrap</a>
-						</Navbar.Brand>
-						<Navbar.Toggle />
-					</Navbar.Header>
-				</Navbar>
-				<NavigationOverlay />
+				<div
+					role="button"
+					tabIndex={0}
+					id="nav-burger"
+					className={this.state.burgerClasses}
+					onClick={this.onClick.bind(this)}
+				>
+					<span />
+					<span />
+					<span />
+					<span />
+				</div>
+				{navigationOverlay}
 			</header>
 		);
 	}
@@ -76,4 +86,5 @@ export default class MainNavigation extends Component {
 MainNavigation.propTypes = {
 	routeProps: React.PropTypes.object,
 	navigation: React.PropTypes.object,
+	onMenuClick: React.PropTypes.func,
 };

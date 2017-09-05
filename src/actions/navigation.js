@@ -1,4 +1,4 @@
-import { INIT_SCROLLING, GET_NAVIGATION, WP_URL } from './constants';
+import { INIT_SCROLLING, GET_NAVIGATION, WP_URL, TOGGLE_MENU } from './constants';
 
 function receiveNavigationData(navData) {
 	return {
@@ -9,7 +9,7 @@ function receiveNavigationData(navData) {
 
 export function getNavigation() {
 	return function (dispatch) {
-		return fetch(WP_URL.replace('wp/v2', 'wp-api-menus/v2/menus/2'))
+		return fetch(WP_URL.replace('wp/v2', 'navigation/primary'))
 			.then(response => Promise.all(
 				[response.headers.get('X-WP-TotalPages'), response.json()]
 			))
@@ -25,5 +25,11 @@ export function initScrolling(enabled) {
 		payload: {
 			scrolling: enabled
 		}
+	};
+}
+
+export function onMenuClick() {
+	return {
+		type: TOGGLE_MENU
 	};
 }

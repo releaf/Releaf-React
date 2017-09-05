@@ -15,7 +15,6 @@ class IndexPageContainer extends Component {
 	}
 
 	componentDidMount() {
-		console.log('mounted');
 		this.props.toggleScrolling(true /* enabled */);
 	}
 

@@ -1,0 +1,15 @@
+.navigation-overlay {
+  width: 100vw;
+  height: 100vh;
+  background: #333;
+  position: absolute;
+  top: 0;
+  .nav-items {
+    height: 100%;
+    font-weight: bold;
+    font-size: 2em;
+    a {
+      color: #fff;
+    }
+  }
+}
