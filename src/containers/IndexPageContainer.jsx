@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomePage from '../components/HomePage';
+import LoadingIndicator from '../components/LoadingIndicator';
 import { fetchPageIfNeeded } from '../actions';
 import { initScrolling } from '../actions/navigation';
 
@@ -20,16 +21,10 @@ class IndexPageContainer extends Component {
 
 	render() {
 		const { page } = this.props;
-		let content = (
-			<h1
-				className="d-flex justify-content-center align-content-center"
-			>
-				LOADING...
-			</h1>
-		);
+		let content = <HomePage page={page} />;
 
-		if (page) {
-			content = <HomePage page={page} />;
+		if (!page) {
+			content = <LoadingIndicator />;
 		}
 		return (
 			<div>

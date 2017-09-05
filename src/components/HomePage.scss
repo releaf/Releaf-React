@@ -1,9 +1,13 @@
+@import '../../sass/vars.scss';
+
 .hero  {
     position: relative;
     height: 100vh;
     max-height: 900px;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
+    background-color: #071424;
+    background-attachment: fixed;
     &:before {
         content: " ";
         width: 100%;
@@ -29,7 +33,7 @@
         opacity: 1;
         top: 0;
         animation: slide-in 0.6s;
-        color: lightseagreen;
+        color: $brand-primary;
         &.hidden {
             opacity: 0;
             top: .2em;
@@ -77,4 +81,82 @@
         opacity: 0;
         transform: translateY(100%);
     }
+}
+
+@keyframes arrow-bounce {
+    0%   { top: 0; }
+    10%  { top:12% }
+    20%  { top:0 }
+    30%  { top:12% }
+    40%  { top:-12% }
+    50%  { top:12% }
+    60%  { top:0 }
+    70%  { top:12% }
+    80%  { top:-12% }
+    90%  { top:12% }
+    100% { top:0 }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        background-attachment: scroll!important;
+    }
+}
+
+.down-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    margin-left: -5em;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    padding: 20px 10px;
+    border-radius: 50%;
+    font-size: 5px;
+    display: block;
+    box-shadow: 0px 0px 5px 0px #333;
+    opacity: 0.5;
+    cursor: pointer;
+    &:hover {
+        bottom: 5%;
+        opacity: 1;
+    }
+    &:focus {
+        outline: none;
+    }
+    .arrow {
+        float: left;
+        position: relative;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 3em 3em 0 3em;
+        border-color: #111 transparent transparent transparent;
+        transform: rotate(360deg);
+        animation: arrow-bounce 2.8s 0.4s;
+        animation-delay: 1.5s;
+        &:after {
+            content: '';
+            position: absolute;
+            top: -3.2em;
+            left: -3em;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 3em 3em 0 3em;
+            border-color: #fff transparent transparent transparent;
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.skills-section {
+    .fa {
+        color: $brand-primary;
+    }
+}
+
+.section {
+    background: $grey;
 }

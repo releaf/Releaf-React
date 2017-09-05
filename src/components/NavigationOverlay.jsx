@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './NavigationOverlay.scss';
+import LoadingIndicator from './LoadingIndicator';
 
 export default class NavigationOverlay extends Component {
 	constructor(props) {
@@ -9,7 +10,10 @@ export default class NavigationOverlay extends Component {
 			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', 'invisible']),
 		};
 	}
-
+	navItemClick() {
+		this.props.onClick();
+		window.scrollTo(0, 0);
+	}
 	render() {
 		const { items } = this.props.navigation;
 		const links = items ? items.map((navigationItem) => (
@@ -22,7 +26,7 @@ export default class NavigationOverlay extends Component {
 					activeClassName="active"
 					onlyActiveOnIndex={navigationItem.title !== 'Home'}
 					key={navigationItem.title}
-					onClick={this.props.onClick.bind(this)}
+					onClick={this.navItemClick.bind(this)}
 				>
 					{navigationItem.title}
 				</Link>
@@ -35,7 +39,7 @@ export default class NavigationOverlay extends Component {
 			<ul className={wrapperClasses.join(' ')}>
 				{links}
 			</ul>
-		) : <h2 className="d-flex justify-content-center text-white">Loading Navigation...</h2>;
+		) : <LoadingIndicator text="Loading Navigation..." />;
 		return (
 			<div className="navigation-overlay">
 				{content}

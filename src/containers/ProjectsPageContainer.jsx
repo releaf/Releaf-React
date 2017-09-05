@@ -28,8 +28,6 @@ class ProjectsPageContainer extends Component {
 	handlePaginationClick(pageNum) {
 		console.log('pagination clicked');
 
-		scroll(0, 0);
-
 		this.props.fetchPosts(pageNum, this.props.postType, this.props.postsPerPage);
 	}
 
@@ -79,9 +77,15 @@ class ProjectsPageContainer extends Component {
 		} = this.props;
 
 		return (
-			<div className="article-listing">
-				{this.buildPosts(posts)}
-				{this.buildPagination(parseInt(pageNum, 10), totalPages)}
+			<div className="container">
+				<div className="row">
+					<div className="col-sm-12">
+						<div className="article-listing">
+							{this.buildPosts(posts)}
+							{this.buildPagination(parseInt(pageNum, 10), totalPages)}
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

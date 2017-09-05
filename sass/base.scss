@@ -9,10 +9,6 @@ body {
     font-family: $font_0, $font_1, $font_2, $font_3, $font_4;
 }
 hr {
-    max-width: 100px;
-    height: 2px;
-    border-top: 1px solid $white;
-    border-bottom: 1px solid $white;
     &.colored {
         border-color: $brand-primary;
     }
@@ -25,9 +21,6 @@ hr {
     display: none;
 }
 @media(min-width: 992px) {
-    hr {
-        max-width: 150px;
-    }
     #mainNav {
         padding: 30px 0;
         transition: padding .5s;
@@ -206,7 +199,7 @@ h6 {
         font-size: 52px;
     }
     h2 {
-        font-size: 50px;
+        font-size: 40px;
     }
     .call-to-action {
         padding: 150px 0;
@@ -214,71 +207,6 @@ h6 {
             font-size: 36px;
             line-height: 38px;
         }
-    }
-    .portfolio-carousel .item {
-        padding-top: 155px;
-        padding-right: 30px;
-        padding-bottom: 155px;
-        padding-left: 30px;
-        text-align: left;
-        .project-details {
-            .project-name {
-                font-size: 50px;
-                line-height: 50px;
-                display: block;
-            }
-            .project-description {
-                font-size: 20px;
-                line-height: 20px;
-            }
-            img.client-logo {
-                margin: 0 auto 25px 0;
-            }
-        }
-        hr.colored {
-            margin: 20px auto 20px 0;
-        }
-    }
-    .portfolio-grid .mix {
-        width: 31%;
-        margin: 1%;
-    }
-}
-
-@media(min-width: 1024px) {
-    .call-to-action {
-        background-attachment: fixed;
-    }
-    header.masthead {
-        background-attachment: fixed;
-    }
-    footer.footer {
-        background-attachment: fixed;
-    }
-}
-@media only screen and(min-device-width: 768px) and(max-device-width: 1366px) and(-webkit-min-device-pixel-ratio: 2) {
-    .call-to-action {
-        background-attachment: scroll;
-    }
-    header.masthead {
-        background-attachment: scroll;
-    }
-    footer.footer {
-        background-attachment: scroll;
-    }
-}
-.call-to-action {
-    padding: 100px 0;
-    text-align: center;
-    color: $white;
-    background-color: $dark_grey;
-    background-size: cover;
-    background-attachment: scroll;
-    span.quote {
-        font-size: 30px;
-        font-weight: 300;
-        line-height: 32px;
-        display: block;
     }
 }
 
@@ -290,12 +218,17 @@ h6 {
     border-radius: 0;
 }
 .btn-primary {
-    border: 1px solid $white;
+    color: $brand-primary;
+    border: 1px solid $brand-primary;
     background-color: transparent;
     &:hover {
-        color: $brand-primary;
-        border-color: $white;
-        background-color: $white;
+        color: $white;
+        border-color: darken($brand-primary, 5%);
+        background-color: $brand-primary;
+        .fa {
+            color: $white;
+            transition: all 0.2s ease-in-out;
+        }
     }
     &:focus {
         color: $brand-primary;
@@ -371,4 +304,8 @@ footer.footer {
 }
 button:hover {
     cursor: pointer;
+}
+
+img {
+    max-width: 100%;
 }
