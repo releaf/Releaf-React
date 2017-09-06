@@ -77,7 +77,7 @@ export default class HomePage extends Component {
 						</div>
 						<ProjectsListingContainer />
 						<div className="text-center p-5">
-							<LinkContainer path="projects">
+							<LinkContainer to={{ pathname: '/projects' }}>
 								<Button
 									bsStyle="primary"
 									bsSize="large"
