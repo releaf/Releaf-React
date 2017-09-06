@@ -4,12 +4,6 @@ import './NavigationOverlay.scss';
 import LoadingIndicator from './LoadingIndicator';
 
 export default class NavigationOverlay extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', 'invisible']),
-		};
-	}
 	navItemClick() {
 		this.props.onClick();
 		window.scrollTo(0, 0);

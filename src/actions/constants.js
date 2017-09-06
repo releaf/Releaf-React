@@ -5,3 +5,4 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SET_HEADER = 'SET_HEADER';
 export const GET_NAVIGATION = 'GET_NAVIGATION';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const GET_FOOTER = 'GET_FOOTER';

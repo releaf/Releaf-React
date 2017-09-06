@@ -168,31 +168,37 @@ h1 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 h2 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 h3 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 h4 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 h5 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 h6 {
     font-family: $font_5, $font_1, $font_2, $font_3, $font_4;
     font-weight: 900;
     text-transform: uppercase;
+    color: $dark_grey;
 }
 @media(min-width: 768px) {
     h1 {
@@ -236,8 +242,9 @@ h6 {
         background-color: $white;
     }
 }
-.btn-secondary {
-    border: 1px solid $dark_grey;
+.btn-default {
+    border: 1px solid $white;
+    color: $white;
     background-color: transparent;
     &:hover {
         color: $white;
@@ -278,34 +285,18 @@ section.page-section {
     padding: 100px 0;
 }
 
-footer.footer {
-    padding: 50px 0 20px;
-    color: $white_70;
-    background-size: cover;
-    background-attachment: scroll;
-    a {
-        color: $white_70;
-        &:hover {
-            color: $white;
-        }
-    }
-    p {
-        font-size: 22px;
-    }
-    .footer-contact-details {
-        margin: 75px 0;
-    }
-    .footer-social {
-        margin-bottom: 75px;
-    }
-    .copyright {
-        font-size: 1rem;
-    }
-}
+
 button:hover {
     cursor: pointer;
 }
 
 img {
     max-width: 100%;
+}
+
+
+@media (max-width: 768px) {
+    html {
+        font-size: 11px;
+    }
 }

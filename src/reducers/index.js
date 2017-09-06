@@ -3,12 +3,14 @@ import pages from './pages';
 import posts from './posts';
 import header from './header';
 import navigation from './navigation';
+import footer from './footer';
 
 const rootReducer = combineReducers({
 	pages,
 	posts,
 	header,
-	navigation
+	navigation,
+	footer
 });
 
 export default rootReducer;

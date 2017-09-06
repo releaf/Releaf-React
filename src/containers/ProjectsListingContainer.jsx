@@ -5,7 +5,7 @@ import ProjectMedium from '../components/ProjectMedium';
 import LoadingIndicator from '../components/LoadingIndicator';
 
 class ProjectsListingContainer extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		const {
 			fetchPosts, pageNum = 1, postType = 'project', postsPerPage = 3, posts
 		} = this.props;

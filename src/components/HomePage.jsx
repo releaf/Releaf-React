@@ -1,7 +1,12 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import ProjectsListingContainer from '../containers/ProjectsListingContainer';
+import { createMarkup } from '../helpers/createMarkup';
+import { scrollTo } from '../helpers/scrollTo';
+
 import './HomePage.scss';
 
 export default class HomePage extends Component {
@@ -22,19 +27,6 @@ export default class HomePage extends Component {
 		clearInterval(this.swapLifeRoles);
 	}
 
-	createMarkup(html) {
-		return {
-			__html: html
-		};
-	}
-
-	scrollTo(destination) {
-		const offset = $(destination).offset().top;
-		$('html, body').animate({
-			scrollTop: offset
-		}, 1000);
-	}
-
 	render() {
 		const { page } = this.props;
 		const heroStyle = {
@@ -45,11 +37,11 @@ export default class HomePage extends Component {
 				<div className="hero" style={heroStyle}>
 					<div
 						className="hero-content d-flex flex-column justify-content-center align-items-center"
-						dangerouslySetInnerHTML={this.createMarkup(page.content.rendered)}
+						dangerouslySetInnerHTML={createMarkup(page.content.rendered)}
 					/>
 					<div
 						className="down-arrow"
-						onClick={this.scrollTo.bind(this, '#sectionOne')}
+						onClick={scrollTo.bind(this, '#sectionOne')}
 						role="button"
 						tabIndex={0}
 					>
@@ -57,33 +49,64 @@ export default class HomePage extends Component {
 					</div>
 				</div>
 				<div className="container" id="sectionOne">
-					<div className="row skills-section">
+					<div className="row skills-section section">
 						<div className="col-sm-12 text-center p-5">
-							<div dangerouslySetInnerHTML={this.createMarkup(page.acf.skills_header_section)} />
+							<div dangerouslySetInnerHTML={createMarkup(page.acf.skills_header_section)} />
 						</div>
 						<div className="col-sm-12 col-md-4 text-center">
-							<div dangerouslySetInnerHTML={this.createMarkup(page.acf.left_col)} />
+							<div dangerouslySetInnerHTML={createMarkup(page.acf.left_col)} />
 						</div>
 						<div className="col-sm-12 col-md-4 text-center">
-							<div dangerouslySetInnerHTML={this.createMarkup(page.acf.midde_col)} />
+							<div dangerouslySetInnerHTML={createMarkup(page.acf.midde_col)} />
 						</div>
 						<div className="col-sm-12 col-md-4 text-center">
-							<div dangerouslySetInnerHTML={this.createMarkup(page.acf.right_col)} />
+							<div dangerouslySetInnerHTML={createMarkup(page.acf.right_col)} />
 						</div>
 						<div className="col-sm-12 p-3" />
 					</div>
 				</div>
-				<div className="section">
+				<div className="section grey">
 					<div className="container">
 						<div className="row">
 							<div className="col-sm-12">
 								<div
 									className="p-5 text-center"
-									dangerouslySetInnerHTML={this.createMarkup(page.acf.projects_text)}
+									dangerouslySetInnerHTML={createMarkup(page.acf.projects_text)}
 								/>
 							</div>
 						</div>
 						<ProjectsListingContainer />
+						<div className="text-center p-5">
+							<LinkContainer path="projects">
+								<Button
+									bsStyle="primary"
+									bsSize="large"
+									target="_blank"
+								>
+									View All Projects
+								</Button>
+							</LinkContainer>
+						</div>
+						<div className="pb-5" />
+					</div>
+				</div>
+				<div
+					className="contact-section section primary d-flex flex-column justify-content-center
+					align-items-center text-white text-center p-5"
+				>
+					<div className="container">
+						<div className="row">
+							<div className="col-sm-12">
+								<div dangerouslySetInnerHTML={createMarkup(page.acf.collaboration_section)} />
+								<Button
+									bsSize="large"
+									target="_blank"
+									className="contact-me"
+								>
+									Get In Touch
+								</Button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -13,8 +13,9 @@ export default class ProjectMedium extends Component {
 		const projectLink = post.acf.link;
 		/* eslint no-use-before-define: 0, no-undef: 0 */
 		const trackGa = () => ga('send', 'event', 'Project Details', 'Click', projectLink);
+		const columnClasses = ['col-lg-6', 'pb-5'];
 		const colOne = (
-			<div className="col-lg-6">
+			<div className={columnClasses.join(' ')}>
 				<h3>{post.title.rendered}</h3>
 				<div dangerouslySetInnerHTML={this.createMarkup(post.acf.project_description)} />
 				<Button
@@ -29,7 +30,7 @@ export default class ProjectMedium extends Component {
 
 		);
 		const colTwo = (
-			<div className="col-lg-6">
+			<div className={columnClasses.join(' ')}>
 				<a
 					href={projectLink}
 					target="_blank"
