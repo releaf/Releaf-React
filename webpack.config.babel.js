@@ -3,35 +3,60 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-	devtool: 'source-map',
-	entry: [
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+const entry = ['babel-polyfill', './src/index.jsx'];
+
+// const cssLoaders = [
+// 	'autoprefixer?browsers=last 3 versions',
+// 	'sass?outputStyle=expanded',
+// ];
+
+const plugins = [
+	new webpack.HotModuleReplacementPlugin(),
+	new HtmlWebpackPlugin({
+		filename: 'index.html',
+		template: './src/index.template.html',
+		inject: true
+	}),
+	new webpack.NoEmitOnErrorsPlugin(),
+	new ExtractTextPlugin( {
+		filename: 'style.css',
+		disable: false,
+		allChunks: true
+	}),
+	new webpack.DefinePlugin({
+		'process.env': {
+			NODE_ENV: JSON.stringify(NODE_ENV),
+		},
+	}),
+	// new webpack.ProvidePlugin({
+	// 	fetch: 'imports?this=>global!exports?global.fetch~whatg-fetch'
+	// }),
+];
+
+if (NODE_ENV !== 'development') {
+	plugins.push(new webpack.optimize.UglifyJsPlugin());
+	// cssLoaders.unshift('css?minimize&sourceMap');
+} else {
+	entry.unshift(
+		'whatwg-fetch',
 		'webpack-dev-server/client?http://localhost:3000',
-		'webpack/hot/only-dev-server',
-		'./src/index.jsx'
-	],
+		'webpack/hot/only-dev-server'
+	);
+// 	cssLoaders.unshift('css?sourceMap');
+// 	cssLoaders.unshift('style');
+}
+
+module.exports = {
+	devtool: NODE_ENV === 'development' ? 'eval-cheap-module-source-map' : 'source-map',
+	entry,
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.js',
 		publicPath: '/'
 	},
-	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({
-			filename: 'index.html',
-			template: './src/index.template.html',
-			inject: true
-		}),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new ExtractTextPlugin( {
-			filename: 'style.css',
-			disable: false,
-			allChunks: true
-		}),
-		// new webpack.ProvidePlugin({
-		//     fetch: 'imports?this=>global!exports?global.fetch~whatg-fetch'
-		// })
-	],
+	plugins,
 	resolve: {
 		extensions: ['.js', '.jsx']
 	},
@@ -50,7 +75,9 @@ module.exports = {
 			{
 				test: /\.(css|scss)$/,
 				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
+					fallback: 'style-loader',
+					// use: NODE_ENV !== 'production' ? cssLoaders.join('!') : ExtractTextPlugin.extract(cssLoaders),
+					// loader: NODE_ENV !== 'production' ? cssLoaders.join('!') : ExtractTextPlugin.extract(cssLoaders),
 					use: [ {
 						loader: "css-loader" // translates CSS into CommonJS
 					}, {
@@ -58,7 +85,7 @@ module.exports = {
 					}, {
 						loader: "sass-loader" // compiles Sass to CSS
 					}],
-					publicPath: "/dist"
+					publicPath: '/dist'
 				})
 			},
 			{

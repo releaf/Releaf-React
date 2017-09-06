@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 import { WP_URL, RECEIVE_PAGE, RECEIVE_POSTS, SET_HEADER } from './constants';
-
-const { Promise } = require('es6-promise').Promise;
+import { createFetch } from './fetch';
+// const { Promise } = require('es6-promise').Promise;
 
 
 // const POSTS_PER_PAGE = 10;
@@ -22,28 +22,6 @@ function shouldFetchPage(state, pageName) {
 	return !pages.hasOwnProperty(pageName);
 }
 
-function receiveHeaderData(siteData) {
-	return {
-		type: SET_HEADER,
-		payload: {
-			name: siteData.name,
-			description: siteData.description,
-			homeLink: siteData.home
-		}
-	};
-}
-
-function receivePosts(pageNum, totalPages, posts) {
-	return {
-		type: RECEIVE_POSTS,
-		payload: {
-			pageNum,
-			totalPages,
-			posts
-		}
-	};
-}
-
 export function fetchPageIfNeeded(pageName, embed = false) {
 	return function (dispatch, getState) {
 		if (shouldFetchPage(getState(), pageName)) {
@@ -57,26 +35,14 @@ export function fetchPageIfNeeded(pageName, embed = false) {
 }
 
 export function fetchPosts(pageNum = 1, postType = 'posts', postsPerPage = 10) {
-	return function (dispatch) {
-		return fetch(`${WP_URL}/${postType}?filter[paged]=${pageNum}&per_page=${postsPerPage}`)
-			.then(response => Promise.all(
-				[response.headers.get('X-WP-TotalPages'), response.json()]
-			))
-			.then(postsData => dispatch(
-				receivePosts(pageNum, postsData[0], postsData[1])
-			));
-	};
+	return createFetch(RECEIVE_POSTS, {
+		url: `${WP_URL}/${postType}?filter[paged]=${pageNum}&per_page=${postsPerPage}`
+	}, { pageNum });
 }
 
 export function getHeader() {
-	return function (dispatch) {
-		return fetch(WP_URL.replace('wp/v2', ''))
-			.then(response => Promise.all(
-				[response.headers.get('X-WP-TotalPages'), response.json()]
-			))
-			.then(siteData => dispatch(
-				receiveHeaderData(siteData[1])
-			));
-	};
+	return createFetch(SET_HEADER, {
+		url: WP_URL.replace('wp/v2', '')
+	});
 }
 

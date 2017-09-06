@@ -18,6 +18,7 @@ const defaultState = {
 export default function pages(state = defaultState, action) {
 	switch (action.type) {
 		case RECEIVE_PAGE: {
+			console.log(action.payload);
 			const { pageName, page } = action.payload;
 
 			return Object.assign({}, state, {

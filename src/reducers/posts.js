@@ -9,14 +9,10 @@ const defaultState = {
 export default function posts(state = defaultState, action) {
 	switch (action.type) {
 		case RECEIVE_POSTS: {
-			const {
-				pageNum, totalPages, posts
-			} = action.payload;
-
 			return Object.assign({}, state, {
-				posts,
-				pageNum,
-				totalPages: parseInt(totalPages, 10)
+				posts: action.payload,
+				pageNum: action.meta.pageNum,
+				totalPages: parseInt(action.totalPages, 10)
 			});
 		}
 		default:

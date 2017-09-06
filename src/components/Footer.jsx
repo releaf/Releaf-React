@@ -5,7 +5,6 @@ import './Footer.scss';
 
 export default class Footer extends Component {
 	componentDidMount() {
-		console.log(this.props);
 		this.props.onLoad();
 	}
 	render() {
@@ -19,7 +18,7 @@ export default class Footer extends Component {
 			)
 			: ''
 		;
-		console.log(this.props);
+
 		return (
 			<footer className="footer section dark-grey text-center d-flex flex-column justify-content-center
 					align-items-center text-white text-center p-5"

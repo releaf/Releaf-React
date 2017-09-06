@@ -4,13 +4,15 @@ import posts from './posts';
 import header from './header';
 import navigation from './navigation';
 import footer from './footer';
+import loading from './loading';
 
 const rootReducer = combineReducers({
 	pages,
 	posts,
 	header,
 	navigation,
-	footer
+	footer,
+	loading
 });
 
 export default rootReducer;

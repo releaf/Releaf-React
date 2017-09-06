@@ -115,5 +115,5 @@ export default class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-	page: React.PropTypes.object.isRequired
+	page: React.PropTypes.object
 };
