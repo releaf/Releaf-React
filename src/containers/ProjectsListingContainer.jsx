@@ -16,7 +16,7 @@ class ProjectsListingContainer extends Component {
 	}
 
 	buildPosts(posts) {
-		return posts.map((post, index) =>
+		return posts.slice(0, 4).map((post, index) =>
 			<ProjectMedium post={post} key={post.id} index={index} />
 		);
 	}

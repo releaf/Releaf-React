@@ -27,6 +27,10 @@ export default class HomePage extends Component {
 		clearInterval(this.swapLifeRoles);
 	}
 
+	linkClick() {
+		window.scrollTo(0, 0);
+	}
+
 	render() {
 		const { page } = this.props;
 		const heroStyle = {
@@ -77,7 +81,10 @@ export default class HomePage extends Component {
 						</div>
 						<ProjectsListingContainer />
 						<div className="text-center p-5">
-							<LinkContainer to={{ pathname: '/projects' }}>
+							<LinkContainer
+								to={{ pathname: '/projects' }}
+								onClick={this.linkClick.bind(this)}
+							>
 								<Button
 									bsStyle="primary"
 									bsSize="large"

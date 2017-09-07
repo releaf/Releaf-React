@@ -20,7 +20,7 @@ const plugins = [
 		inject: true
 	}),
 	new webpack.NoEmitOnErrorsPlugin(),
-	new ExtractTextPlugin( {
+	new ExtractTextPlugin({
 		filename: 'style.css',
 		disable: false,
 		allChunks: true
@@ -78,12 +78,12 @@ module.exports = {
 					fallback: 'style-loader',
 					// use: NODE_ENV !== 'production' ? cssLoaders.join('!') : ExtractTextPlugin.extract(cssLoaders),
 					// loader: NODE_ENV !== 'production' ? cssLoaders.join('!') : ExtractTextPlugin.extract(cssLoaders),
-					use: [ {
-						loader: "css-loader" // translates CSS into CommonJS
+					use: [{
+						loader: 'css-loader' // translates CSS into CommonJS
 					}, {
-						loader: "postcss-loader" // auto-prefixes CSS
+						loader: 'postcss-loader' // auto-prefixes CSS
 					}, {
-						loader: "sass-loader" // compiles Sass to CSS
+						loader: 'sass-loader' // compiles Sass to CSS
 					}],
 					publicPath: '/dist'
 				})
