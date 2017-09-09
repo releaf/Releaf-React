@@ -4,38 +4,79 @@ import './NavigationOverlay.scss';
 import LoadingIndicator from './LoadingIndicator';
 
 export default class NavigationOverlay extends Component {
+	constructor(props) {
+		super(props);
+		const currentPage = this.formatHoverClass(props.route.name);
+		this.state = {
+			hoverClass: currentPage,
+			currentHoveredPage: currentPage
+		};
+	}
+	onNavigationHover(title) {
+		const currentPage = this.formatHoverClass(this.props.route.name);
+		const hoverClass = title
+			? `${currentPage} nav-hover-${title}`
+			: `${currentPage}`
+		;
+		this.setState({	hoverClass, currentHoveredPage: title || currentPage });
+	}
+
 	navItemClick() {
 		this.props.onClick();
 		window.scrollTo(0, 0);
 	}
+
+	formatHoverClass(title) {
+		const hoverClass = title;
+		return hoverClass.replace(/ /g, '-').toLowerCase();
+	}
+
 	render() {
-		const { items } = this.props.navigation;
-		const links = items ? items.map((navigationItem) => (
-			<li
-				key={`${navigationItem.title}-wrapper`}
-				className="nav-item"
-			>
-				<Link
-					to={navigationItem.url.replace('http://api.rleafey.com', '')}
-					activeClassName="active"
-					onlyActiveOnIndex={navigationItem.title !== 'Home'}
-					key={navigationItem.title}
-					onClick={this.navItemClick.bind(this)}
+		const { navigation: { items } } = this.props;
+		const links = items ? items.map((navigationItem) => {
+			const { title, url } = navigationItem;
+			return (
+				<li
+					key={`${title}-wrapper`}
+					className="nav-item"
 				>
-					{navigationItem.title}
-				</Link>
-			</li>
-		)) : null;
-		const wrapperClasses = [
-			'nav-items', 'list-unstyled', 'd-flex', 'flex-column', 'justify-content-center align-items-center'
-		];
-		const content = links ? (
-			<ul className={wrapperClasses.join(' ')}>
-				{links}
-			</ul>
-		) : <LoadingIndicator text="Loading Navigation..." />;
+					<Link
+						key={title}
+						to={url.replace('http://api.rleafey.com', '')}
+						activeClassName="active"
+						onlyActiveOnIndex={title !== 'Home'}
+						onClick={this.navItemClick.bind(this)}
+						onMouseEnter={this.onNavigationHover.bind(this, this.formatHoverClass(title))}
+						onMouseLeave={this.onNavigationHover.bind(this, null)}
+					>
+						{title}
+					</Link>
+				</li>
+			);
+		}) : null;
+		const bgHoverEls = items ? items.map((navigationItem) => {
+			const classes = ['nav-overlay-bg', `nav-overlay-bg-${this.formatHoverClass(navigationItem.title)}`];
+			if (this.state.currentHoveredPage === this.formatHoverClass(navigationItem.title)) {
+				classes.push('active');
+			}
+			return (
+				<div className={classes.join(' ')} />
+			);
+		}) : null;
+		const wrapperClasses = ['d-flex', 'flex-column', 'justify-content-center'];
+		const content = links
+			? (
+				<div className={`${wrapperClasses.join(' ')} align-items-center`}>
+					<ul className={`${wrapperClasses.join(' ')} nav-items list-unstyled`}>
+						{links}
+					</ul>
+					{bgHoverEls}
+				</div>
+			)
+			: <LoadingIndicator text="Loading Navigation..." color="white" />
+		;
 		return (
-			<div className="navigation-overlay">
+			<div className={`navigation-overlay ${this.state.hoverClass}`}>
 				{content}
 			</div>
 		);
@@ -45,4 +86,5 @@ export default class NavigationOverlay extends Component {
 NavigationOverlay.propTypes = {
 	navigation: React.PropTypes.object,
 	onClick: React.PropTypes.func,
+	route: React.PropTypes.object,
 };

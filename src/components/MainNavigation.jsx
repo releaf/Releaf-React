@@ -7,7 +7,7 @@ export default class MainNavigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', 'invisible'])
+			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', props.routeProps.name === 'home' ? 'invisible' : ''])
 		};
 	}
 
@@ -62,6 +62,7 @@ export default class MainNavigation extends Component {
 			? (<NavigationOverlay
 				navigation={this.props.navigation}
 				onClick={this.onClick.bind(this)}
+				route={this.props.routeProps}
 			/>)
 			: null
 		;

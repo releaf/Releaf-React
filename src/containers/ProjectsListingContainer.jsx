@@ -16,6 +16,7 @@ class ProjectsListingContainer extends Component {
 	}
 
 	buildPosts(posts) {
+		// Prevent subsequent post requests populating this section by always taking the first 3
 		return posts.slice(0, 4).map((post, index) =>
 			<ProjectMedium post={post} key={post.id} index={index} />
 		);
