@@ -300,3 +300,31 @@ img {
         font-size: 11px;
     }
 }
+
+.section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    &.grey {
+        background: $grey;
+    }
+    &.dark-grey {
+        background: $dark_grey;
+    }
+    &.primary {
+        background: darken($brand-primary, 5%);
+        h1,
+        h2 {
+            color: $white;
+        }
+    }
+    &.secondary {
+        background: darken($brand-secondary, 5%);
+        h1,
+        h2 {
+            color: $white;
+        }
+    }
+    &.contact-section {
+        min-height: 400px;
+    }
+}

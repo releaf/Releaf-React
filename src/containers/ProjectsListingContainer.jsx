@@ -7,25 +7,26 @@ import LoadingIndicator from '../components/LoadingIndicator';
 class ProjectsListingContainer extends Component {
 	componentDidMount() {
 		const {
-			fetchPosts, pageNum = 1, postType = 'project', postsPerPage = 3, posts
+			fetchPosts, pageNum = 1, postType = 'project', posts, postCount
 		} = this.props;
 
-		if (posts.length > -1) {
-			fetchPosts(pageNum, postType, postsPerPage);
+		if (posts.length === 0) {
+			fetchPosts(pageNum, postType, postCount);
 		}
 	}
 
 	buildPosts(posts) {
-		// Prevent subsequent post requests populating this section by always taking the first 3
-		return posts.slice(0, 4).map((post, index) =>
+		return posts.map((post, index) =>
 			<ProjectMedium post={post} key={post.id} index={index} />
 		);
 	}
 
 	render() {
-		const { posts } = this.props;
-		const content = posts.length > 0
-			? this.buildPosts(posts)
+		const { posts, postCount, page } = this.props;
+		// if postCount is set and we've fetched more posts than we need slice the array down to the correct size
+		const postsToRender = postCount && !page ? posts.slice(0, postCount) : posts;
+		const content = postsToRender.length > 0
+			? this.buildPosts(postsToRender)
 			: <LoadingIndicator text="Loading Projects..." />
 		;
 		return (
@@ -55,8 +56,9 @@ ProjectsListingContainer.propTypes = {
 	fetchPosts: React.PropTypes.func,
 	pageNum: React.PropTypes.number,
 	posts: React.PropTypes.array,
-	postsPerPage: React.PropTypes.number,
 	postType: React.PropTypes.string,
+	postCount: React.PropTypes.number,
+	page: React.PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsListingContainer);

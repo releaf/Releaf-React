@@ -158,23 +158,3 @@
         color: $brand-primary;
     }
 }
-
-.section {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    &.grey {
-        background: $grey;
-    }
-    &.dark-grey {
-        background: $dark_grey;
-    }
-    &.primary {
-        background: darken($brand-primary, 5%);
-        h2 {
-            color: $white;
-        }
-    }
-    &.contact-section {
-        min-height: 400px;
-    }
-}

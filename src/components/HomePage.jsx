@@ -79,7 +79,7 @@ export default class HomePage extends Component {
 								/>
 							</div>
 						</div>
-						<ProjectsListingContainer />
+						<ProjectsListingContainer postCount={3} />
 						<div className="text-center p-5">
 							<LinkContainer
 								to={{ pathname: '/projects' }}

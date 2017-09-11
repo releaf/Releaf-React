@@ -36,7 +36,7 @@ export function fetchPageIfNeeded(pageName, embed = false) {
 
 export function fetchPosts(pageNum = 1, postType = 'posts', postsPerPage = 10) {
 	return createFetch(RECEIVE_POSTS, {
-		url: `${WP_URL}/${postType}?filter[paged]=${pageNum}&per_page=${postsPerPage}`
+		url: `${WP_URL}/${postType}?filter[paged]=${pageNum}&filter[posts_per_page]=${postsPerPage}`
 	}, { pageNum });
 }
 
