@@ -7,26 +7,16 @@ export default class MainNavigation extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', props.routeProps.name === 'home' ? 'invisible' : ''])
+			navClasses: new Set(['navbar', 'fixed-top', 'navbar-light', 'white-burger'])
 		};
 	}
 
 	componentDidMount() {
-		if (this.props.routeProps &&
-			this.props.routeProps.name &&
-			this.props.routeProps.name === 'home'
-		) {
-			window.addEventListener('scroll', this.handleScroll.bind(this), false);
-		}
+		window.addEventListener('scroll', this.handleScroll.bind(this), false);
 	}
 
 	componentDidUpdate() {
-		if (this.props.routeProps &&
-			this.props.routeProps.name &&
-			this.props.routeProps.name !== 'home'
-		) {
-			window.removeEventListener('scroll', this.handleScroll.bind(this), false);
-		}
+		window.removeEventListener('scroll', this.handleScroll.bind(this), false);
 	}
 
 	onClick() {
@@ -37,24 +27,29 @@ export default class MainNavigation extends Component {
 		this.props.onMenuClick(this.props.navigation);
 	}
 
-	handleScroll(event) {
-		if (this.props.routeProps.name === 'home' && this.props.navigation.scrolling.enabled) {
-			const scrollTop = event.srcElement.body.scrollTop;
-			const currentClasses = this.state.navClasses;
-			const hero = document.getElementsByClassName('hero')[0];
-			if (hero && !this.props.navigation.showMenu) {
-				const windowHeight = document.getElementsByClassName('hero')[0].clientHeight;
-				if (scrollTop > (windowHeight - 200)) {
-					currentClasses.delete('invisible');
-				} else {
-					currentClasses.add('invisible');
-				}
+	handleScroll() {
+		const scrollTop = document.documentElement
+			? document.documentElement.scrollTop
+			: document.body.scrollTop
+		;
+		const currentClasses = this.state.navClasses;
+		let target = document.getElementsByClassName('projects-header')[0];
+		let targetOffset = 200;
+		let method = 'add';
 
-				this.setState({
-					navClasses: currentClasses
-				});
-			}
+		if (this.props.routeProps.name === 'home' && this.props.navigation.scrolling.enabled) {
+			target = document.getElementsByClassName('hero')[0];
+			targetOffset = target.clientHeight - 200;
 		}
+
+		if (scrollTop > targetOffset) {
+			method = 'delete';
+		}
+
+		currentClasses[method]('white-burger');
+		this.setState({
+			navClasses: currentClasses
+		});
 	}
 
 	render() {

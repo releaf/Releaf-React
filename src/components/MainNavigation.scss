@@ -8,8 +8,12 @@
     transition: all 0.5s ease;
     opacity: 1;
   }
-  &.invisible {
-    opacity: 0;
+  &.white-burger {
+    #nav-burger {
+      span {
+        background: $white;
+      }
+    }
   }
   .navbar-brand {
     font-size: 24px;
