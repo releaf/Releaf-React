@@ -17,7 +17,7 @@ class ProjectsListingContainer extends Component {
 
 	buildPosts(posts) {
 		return posts.map((post, index) =>
-			<ProjectMedium post={post} key={post.id} index={index} />
+			<ProjectMedium post={post} key={post.id} index={index} page={this.props.page} />
 		);
 	}
 

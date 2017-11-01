@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, Button } from 'react-bootstrap';
 
+import './ProjectMedium.scss';
+
 export default class ProjectMedium extends Component {
 	createMarkup(html) {
 		return {
@@ -9,11 +11,21 @@ export default class ProjectMedium extends Component {
 	}
 
 	render() {
-		const { post } = this.props;
+		const { post, page } = this.props;
 		const projectLink = post.acf.link;
 		/* eslint no-use-before-define: 0, no-undef: 0 */
 		const trackGa = () => ga('send', 'event', 'Project Details', 'Click', projectLink);
 		const columnClasses = ['col-lg-6', 'pb-5'];
+		const requirements = page
+			? (
+				<div className="row">
+					<div className="col-lg-12">
+						<h6>Technologies</h6>
+						<div className="project-specs" dangerouslySetInnerHTML={this.createMarkup(post.acf.project_credentials)} />
+					</div>
+				</div>
+			)
+			: null;
 		const colOne = (
 			<div className={columnClasses.join(' ')}>
 				<h3>{post.title.rendered}</h3>
@@ -27,7 +39,6 @@ export default class ProjectMedium extends Component {
 				>Visit Website&nbsp;&nbsp;<i className="fa fa-external-link" />
 				</Button>
 			</div>
-
 		);
 		const colTwo = (
 			<div className={columnClasses.join(' ')}>
@@ -60,6 +71,7 @@ export default class ProjectMedium extends Component {
 		return (
 			<span>
 				{getContent()}
+				{requirements}
 				<div className="row">
 					<div className="col-sm-12 pb-5 pt-5">
 						<hr />
@@ -72,5 +84,6 @@ export default class ProjectMedium extends Component {
 
 ProjectMedium.propTypes = {
 	post: React.PropTypes.object.isRequired,
-	index: React.PropTypes.number.isRequired
+	index: React.PropTypes.number.isRequired,
+	page: React.PropTypes.bool,
 };

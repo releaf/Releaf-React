@@ -22,7 +22,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={Index} name="home">
 				<IndexRoute component={IndexPageContainer} name="home" />
-				<Route path="projects" component={ProjectsPageContainer} name="projects" postCount={-1} />
+				<Route path="projects" component={ProjectsPageContainer} name="projects" postCount={1000} />
 			</Route>
 		</Router>
 	</Provider>,

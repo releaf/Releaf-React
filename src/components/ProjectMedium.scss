@@ -1,0 +1,14 @@
+@import '../../sass/vars.scss';
+
+.project-specs {
+	ul {
+		padding-left: 0;
+		li {
+			display: inline-block;
+			padding: 5px 10px;
+			background: $brand-primary;
+			color: $white;
+			margin: 3px 1px;
+		}
+	}
+}

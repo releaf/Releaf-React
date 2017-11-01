@@ -1,9 +1,5 @@
 @import '../../sass/vars.scss';
 
-$homeBg: $brand-primary;
-$projectsBg:  $brand-secondary; //linear-gradient(45deg, darken($brand-primary, 5%), lighten($brand-primary, 25%));
-$contactMeBg: #299e90;
-
 .nav-overlay-bg,
 .navigation-overlay {
   width: 100vw;

@@ -1,7 +1,8 @@
 //colors
 $dark_grey: #272932;
 $brand-primary: darken(deepskyblue, 15%); //lightseagreen;
-$brand-secondary: #299e90;//#FF7D21;
+$brand-secondary: #ff8100;//#FF7D21;
+$brand-hightlight-secondary: orange;
 $brand-highlight: lighten($brand-primary, 5%);
 $white: white;
 $white_10: rgba(255, 255, 255, 0.1);
@@ -13,6 +14,10 @@ $stars: #f1c40f;
 $brand-primary_75: rgba($brand-primary, 0.75);
 $color_bon_jour_approx: #e1e1e1;
 $brand-primary_50: rgba($brand-primary, 0.5);
+
+$homeBg: $brand-primary;
+$projectsBg:  $brand-secondary; //linear-gradient(45deg, darken($brand-primary, 5%), lighten($brand-primary, 25%));
+$contactMeBg: #AD343E;
 
 //fonts
 $font_0: Roboto;
