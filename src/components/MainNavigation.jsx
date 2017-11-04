@@ -32,13 +32,11 @@ export default class MainNavigation extends Component {
 		// Cross-browser scrollTop safety net.
 		const scrollTop = pageYOffset || documentElement.scrollTop || body.scrollTop || 0;
 		const currentClasses = this.state.navClasses;
-		let target = document.getElementsByClassName('projects-header')[0];
 		let targetOffset = 200;
 		let method = 'add';
 
 		if (this.props.routeProps.name === 'home') {
-			target = document.getElementsByClassName('hero')[0];
-			targetOffset = target.clientHeight - 200;
+			targetOffset = document.getElementsByClassName('hero')[0].clientHeight - 200;
 		}
 
 		if (scrollTop > targetOffset) {
