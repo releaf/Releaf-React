@@ -10,21 +10,19 @@ class ProjectsListingContainer extends Component {
 			fetchPosts, pageNum = 1, postType = 'project', posts, postCount
 		} = this.props;
 
-		if (posts.length === 0) {
+		if (posts.length < postCount) {
 			fetchPosts(pageNum, postType, postCount);
 		}
 	}
-
 	buildPosts(posts) {
 		return posts.map((post, index) =>
 			<ProjectMedium post={post} key={post.id} index={index} page={this.props.page} />
 		);
 	}
-
 	render() {
-		const { posts, postCount, page } = this.props;
+		const { postCount, posts } = this.props;
 		// if postCount is set and we've fetched more posts than we need slice the array down to the correct size
-		const postsToRender = postCount && !page ? posts.slice(0, postCount) : posts;
+		const postsToRender = postCount ? posts.slice(0, postCount) : posts;
 		const content = postsToRender.length > 0
 			? this.buildPosts(postsToRender)
 			: <LoadingIndicator text="Loading Projects..." />

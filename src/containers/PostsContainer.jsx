@@ -19,8 +19,6 @@ class PostsContainer extends Component {
 	}
 
 	handlePaginationClick(pageNum) {
-		console.log('pagination clicked');
-
 		scroll(0, 0);
 
 		this.props.fetchPosts(pageNum);
@@ -71,7 +69,6 @@ class PostsContainer extends Component {
 			posts, totalPages, pageNum = 1
 		} = this.props;
 
-		console.log('PostsContainer:render', this);
 
 		return (
 			<div className="article-listing">

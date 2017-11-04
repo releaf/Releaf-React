@@ -8,14 +8,14 @@ export default class ProjectsPageContainer extends Component {
 				<div className="jumbotron section secondary projects-header">
 					<div className="container text-white">
 						<h1 className="text-white">Projects</h1>
-						<p>Please feel free to check out some of my work</p>
+						<p>Please check out some of my work.</p>
 					</div>
 				</div>
 				<div className="container">
 					<div className="row">
 						<div className="col-sm-12">
 							<div className="article-listing">
-								<ProjectsListingContainer postCount={this.props.route.postCount} page />
+								<ProjectsListingContainer postCount={10000} page />
 							</div>
 						</div>
 					</div>
@@ -26,6 +26,5 @@ export default class ProjectsPageContainer extends Component {
 }
 
 ProjectsPageContainer.propTypes = {
-	route: React.PropTypes.object,
 };
 

@@ -35,7 +35,6 @@ export default class NavigationOverlay extends Component {
 		const { navigation: { items } } = this.props;
 		const links = items ? items.map((navigationItem) => {
 			const { title, url } = navigationItem;
-			console.log(title, title !== 'Home');
 			return (
 				<li
 					key={`${title}-wrapper`}
