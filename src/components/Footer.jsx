@@ -25,7 +25,7 @@ export default class Footer extends Component {
 					align-items-center text-white text-center p-5"
 			>
 				{content}
-				<p>© {new Date().getFullYear()} <a href="http://rleafey.com">Ryan Leafey & rleafey.com</a>.</p>
+				<p>© {new Date().getFullYear()} <a href="https://rleafey.com">Ryan Leafey & rleafey.com</a>.</p>
 				<p>
 					<a
 						role="button"

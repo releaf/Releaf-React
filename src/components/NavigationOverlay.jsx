@@ -42,7 +42,7 @@ export default class NavigationOverlay extends Component {
 				>
 					<Link
 						key={title}
-						to={url.replace('http://api.rleafey.com', '')}
+						to={url.replace(/(https|http):\/\/.*\.com/, '')}
 						activeClassName="active"
 						onlyActiveOnIndex={title === 'Home'}
 						onClick={this.navItemClick.bind(this)}
