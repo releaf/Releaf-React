@@ -35,16 +35,17 @@ export default class NavigationOverlay extends Component {
 		const { navigation: { items } } = this.props;
 		const links = items ? items.map((navigationItem) => {
 			const { title, url } = navigationItem;
+			console.log(title, title !== 'Home');
 			return (
 				<li
 					key={`${title}-wrapper`}
-					className="nav-item"
+					className={`nav-item nav-${this.formatHoverClass(title)}`}
 				>
 					<Link
 						key={title}
 						to={url.replace('http://api.rleafey.com', '')}
 						activeClassName="active"
-						onlyActiveOnIndex={title !== 'Home'}
+						onlyActiveOnIndex={title === 'Home'}
 						onClick={this.navItemClick.bind(this)}
 						onMouseEnter={this.onNavigationHover.bind(this, this.formatHoverClass(title))}
 						onMouseLeave={this.onNavigationHover.bind(this, null)}
@@ -66,7 +67,7 @@ export default class NavigationOverlay extends Component {
 		const wrapperClasses = ['d-flex', 'flex-column', 'justify-content-center'];
 		const content = links
 			? (
-				<div className={`${wrapperClasses.join(' ')} align-items-center`}>
+				<div className={`${wrapperClasses.join(' ')} align-items-center navigation-overlay-container`}>
 					<ul className={`${wrapperClasses.join(' ')} nav-items list-unstyled`}>
 						{links}
 					</ul>

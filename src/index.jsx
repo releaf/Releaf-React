@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 import Index from './containers/Index';
 import IndexPageContainer from './containers/IndexPageContainer';
 import ProjectsPageContainer from './containers/ProjectsPageContainer';
+import ContactPageContainer from './containers/ContactPageContainer';
 import '../sass/fonts.css';
 import '../sass/bootstrap.css';
 import '../sass/base.scss';
@@ -23,6 +24,7 @@ ReactDOM.render(
 			<Route path="/" component={Index} name="home">
 				<IndexRoute component={IndexPageContainer} name="home" />
 				<Route path="projects" component={ProjectsPageContainer} name="projects" postCount={1000} />
+				<Route path="contact" component={ContactPageContainer} name="contact" />
 			</Route>
 		</Router>
 	</Provider>,

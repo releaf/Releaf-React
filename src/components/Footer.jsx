@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createMarkup } from '../helpers/createMarkup';
+import { scrollTo } from '../helpers/scrollTo';
 
 import './Footer.scss';
 
@@ -26,7 +27,15 @@ export default class Footer extends Component {
 				{content}
 				<p>© {new Date().getFullYear()} <a href="http://rleafey.com">Ryan Leafey & rleafey.com</a>.</p>
 				<p>
-					<a href="#">Back to top</a>
+					<a
+						role="button"
+						tabIndex={0}
+						onClick={scrollTo.bind(this, '#root')}
+						href="#"
+						className="p-2"
+					>
+						Back to top
+					</a>
 				</p>
 			</footer>
 		);

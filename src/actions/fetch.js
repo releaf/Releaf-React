@@ -1,12 +1,15 @@
 import { isLoading, isLoaded } from './loading';
 import { RECEIVE_POSTS } from './constants';
 
-export function createFetch(type = null, { url } = {}, metaData = null) {
+export function createFetch(type = null, { url } = {}, metaData = null, headers = {}) {
 	const fetchUrl = url;
 	let totalPages = '';
 	return (dispatch) => {
 		dispatch(isLoading(type));
-		return fetch(fetchUrl)
+		return fetch(fetchUrl, {
+			method: 'GET',
+			headers,
+		})
 			.then((response) => {
 				if (type === RECEIVE_POSTS) {
 					totalPages = response.headers.get('X-WP-TotalPages');

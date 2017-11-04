@@ -37,7 +37,7 @@ export default class MainNavigation extends Component {
 		let targetOffset = 200;
 		let method = 'add';
 
-		if (this.props.routeProps.name === 'home' && this.props.navigation.scrolling.enabled) {
+		if (this.props.routeProps.name === 'home') {
 			target = document.getElementsByClassName('hero')[0];
 			targetOffset = target.clientHeight - 200;
 		}

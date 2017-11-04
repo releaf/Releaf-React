@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HomePage from '../components/HomePage';
+import ContactPage from '../components/ContactPage';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { fetchPageIfNeeded } from '../actions';
 
-const PAGE_NAME = 'home';
+const PAGE_NAME = 'contact';
 
-// Smart component
-class IndexPageContainer extends Component {
+class ContactPageContainer extends Component {
 	componentWillMount() {
 		const { fetchPageIfNeeded } = this.props;
 		fetchPageIfNeeded(PAGE_NAME, true /* set embed = true include all embedded media */);
@@ -15,7 +14,7 @@ class IndexPageContainer extends Component {
 
 	render() {
 		const { page } = this.props;
-		let content = <HomePage page={page} />;
+		let content = <ContactPage page={page} />;
 
 		if (!page) {
 			content = <LoadingIndicator />;
@@ -42,7 +41,7 @@ const mapDispatchToProps = (dispatch) => (
 	}
 );
 
-IndexPageContainer.propTypes = {
+ContactPageContainer.propTypes = {
 	fetchPageIfNeeded: React.PropTypes.func.isRequired,
 	page: React.PropTypes.object,
 };
@@ -50,5 +49,5 @@ IndexPageContainer.propTypes = {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(IndexPageContainer);
+)(ContactPageContainer);
 

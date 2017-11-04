@@ -102,3 +102,9 @@
     left: 50%;
   }
 }
+
+@media(max-width: 992px) {
+  #nav-burger {
+    top: 10px;
+  }
+}

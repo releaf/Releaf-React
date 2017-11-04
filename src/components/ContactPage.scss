@@ -1,0 +1,20 @@
+@import '../../sass/vars.scss';
+
+.contact-wrapper {
+	height: 100vh;
+	background: $contactMeBg;
+	.social-links a {
+		padding: 1rem;
+		font-size: 3rem;
+		line-height: 2.5;
+		color: #fff;
+		&:hover {
+			color: $dark_grey;
+		}
+		.fa {
+			display: inline-flex;
+			flex-flow: column;
+			justify-content: center;
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export function scrollTo(destination = '#app-root') {
+export function scrollTo(destination = '#root') {
 	const offset = $(destination).offset().top;
 	$('html, body').animate({
 		scrollTop: offset

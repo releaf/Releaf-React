@@ -35,11 +35,16 @@
         top: 1.75rem;
         transition: all ease 1s;
         opacity: 0;
-        border-radius: 1rem;
+      }
+      &:hover,
+      &.active {
+        &:before {
+          opacity: 1;
+        }
       }
       &:hover {
         &:before {
-          opacity: 1;
+          border-radius: 1rem;
         }
       }
     }
@@ -67,8 +72,12 @@
     &-projects {
       background: $projectsBg;
     }
-    &-contact-me {
+    &-contact {
       background: $contactMeBg;
     }
   }
+}
+
+.navigation-overlay-container {
+  background-color: #999;
 }

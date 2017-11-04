@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { Button } from 'react-bootstrap';
@@ -105,13 +104,18 @@ export default class HomePage extends Component {
 						<div className="row">
 							<div className="col-sm-12">
 								<div dangerouslySetInnerHTML={createMarkup(page.acf.collaboration_section)} />
-								<Button
-									bsSize="large"
-									target="_blank"
-									className="contact-me"
+								<LinkContainer
+									to={{ pathname: '/contact' }}
+									onClick={this.linkClick.bind(this)}
 								>
-									Get In Touch
-								</Button>
+									<Button
+										bsSize="large"
+										target="_blank"
+										className="contact-me"
+									>
+										Get In Touch
+									</Button>
+								</LinkContainer>
 							</div>
 						</div>
 					</div>
