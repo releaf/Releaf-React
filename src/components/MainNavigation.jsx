@@ -28,10 +28,9 @@ export default class MainNavigation extends Component {
 	}
 
 	handleScroll() {
-		const scrollTop = document.documentElement
-			? document.documentElement.scrollTop
-			: document.body.scrollTop
-		;
+		const { pageYOffset, document: { body, documentElement } } = window;
+		// Cross-browser scrollTop safety net.
+		const scrollTop = pageYOffset || documentElement.scrollTop || body.scrollTop || 0;
 		const currentClasses = this.state.navClasses;
 		let target = document.getElementsByClassName('projects-header')[0];
 		let targetOffset = 200;
